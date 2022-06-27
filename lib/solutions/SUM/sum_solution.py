@@ -17,14 +17,15 @@ def _checks(x, y):
         raise TypeError(f"y must be integer, got {type(y)}")
 
     if not 0 <= x <= 100:
-        raise ValueError("x must be between 0 and 100 (bounds included), got {x}")
+        raise ValueError(f"x must be between 0 and 100 (bounds included), got {x}")
 
     if not 0 <= y <= 100:
-        raise ValueError("y must be between 0 and 100 (bounds included), got {y}")
+        raise ValueError(f"y must be between 0 and 100 (bounds included), got {y}")
 
 def compute(x: int, y: int) -> int:
 
     _checks(x, y)
     
     return x + y
+
 

@@ -24,30 +24,30 @@ class TestSum():
 
         assert f"x must be integer, got {type('a')}" == str(exc.value)
 
-        with pytest.raises(TypeError):
+        with pytest.raises(TypeError) as exc:
             sum_solution.compute(3.2, 2)
 
         assert f"x must be integer, got {type(3.2)}" == str(exc.value)
 
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError) as exc:
             sum_solution.compute(101, 3)
 
         assert f"x must be between 0 and 100 (bounds included), got 101" == str(exc.value)
 
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError) as exc:
             sum_solution.compute(3, 101)
 
         assert f"y must be between 0 and 100 (bounds included), got 101" == str(exc.value)
 
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError) as exc:
             sum_solution.compute(-1, 3)
 
-        assert f"x must be between 0 and 100 (bounds included), got 101" == str(exc.value)
+        assert f"x must be between 0 and 100 (bounds included), got -1" == str(exc.value)
 
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError) as exc:
             sum_solution.compute(3, -1)
 
-        assert f"y must be between 0 and 100 (bounds included), got 101" == str(exc.value)
+        assert f"y must be between 0 and 100 (bounds included), got -1" == str(exc.value)
 
 
     def test_sum_output_type(self):
@@ -55,4 +55,5 @@ class TestSum():
         assert isinstance(sum_solution.compute(2, 1), int)
         
         
+
 
