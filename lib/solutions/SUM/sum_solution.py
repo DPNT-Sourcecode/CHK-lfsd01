@@ -20,13 +20,10 @@ def _checks(x, y):
         raise ValueError("x must be between 0 and 100 (bounds included), got {x}")
 
     if not 0 <= y <= 100:
-        raise ValueError("y must be between 0 and 100 (bounds included), got {x}")
+        raise ValueError("y must be between 0 and 100 (bounds included), got {y}")
 
 def compute(x: int, y: int) -> int:
 
     _checks(x, y)
     
     return x + y
-
-
-

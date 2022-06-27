@@ -8,7 +8,7 @@ class TestSum():
         assert sum_solution.compute(1, 2) == 3
 
     def test_sum_input(self):
-        """Check that the function raises a type exception"""
+        """Check that the input fulfils requirements"""
         with pytest.raises(TypeError):
             sum_solution.compute('a', 1)
 
@@ -34,9 +34,7 @@ class TestSum():
             sum_solution.compute(3, -1)
 
     def test_sum_output_type(self):
-        """Check that the function raises a type exception"""
+        """Check that the function returns an int."""
         assert isinstance(sum_solution.compute(2, 1), int)
         
         
-
-
