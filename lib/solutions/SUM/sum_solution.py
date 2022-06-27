@@ -14,7 +14,7 @@ def _checks(x, y):
         raise TypeError(f"x must be integer, got {type(x)}")
         
     if not isinstance(y, int):
-        raise TypeError(f"y must be integer, got {type(x)}")
+        raise TypeError(f"y must be integer, got {type(y)}")
 
     if not 0 <= x <= 100:
         raise ValueError("x must be between 0 and 100 (bounds included), got {x}")
@@ -27,3 +27,4 @@ def compute(x: int, y: int) -> int:
     _checks(x, y)
     
     return x + y
+
