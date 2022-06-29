@@ -97,8 +97,10 @@ def checkout(skus: str) -> int:
         return -1
 
 
-    # apply multi-buy offers
+    # drop zero counts
+    counts = {k: v for k, v in counts.items() if v > 0}
 
+    # apply multi-buy offers
     for mb_offer in MULTI_BUY_OFFERS:
         # sort skus by decreasing price so it's more convenient for the customer
         sorted_mb_skus = sorted(
@@ -107,14 +109,15 @@ def checkout(skus: str) -> int:
             reverse=True
             )
 
-        multi_buy_items = {mb_sku: counts[mb_sku] for mb_sku in sorted_mb_skus}
+        multi_buy_items = {mb_sku: counts[mb_sku] for mb_sku in sorted_mb_skus if mb_sku in counts}
         Nmulti_buy_items = sum(multi_buy_items.values())
         print(multi_buy_items)
         print(Nmulti_buy_items)
 
+        # if Nmulti_buy_items >= 3:
+        #     for mb_sku in sorted_mb_skus
+
     return 0
-    # drop zero counts
-    counts = {k: v for k, v in counts.items() if v > 0}
 
     tot_checkout = sum([compute_price(
         count,
@@ -122,3 +125,4 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
