@@ -12,10 +12,16 @@ SKUS_OFFERS = {
     'B': {'qty': 2, 'price': 45},
 }
 
-def apply_offers():
 
-    # noinspection PyUnusedLocal
-    # skus = unicode string
+def apply_offers(sku_name, count):
+
+    full_price = SKUS_PRICES[sku_name]
+    offer_qty = SKUS_PRICES[sku_name]['qty']
+    offer_price = SKUS_PRICES[sku_name]['price']
+
+    tot_price = full_price * (count % offer_qty) + offer_price * (count // offer_qty)
+
+    return tot_price
 
 
 def checkout(skus: str) -> int:
@@ -27,5 +33,6 @@ def checkout(skus: str) -> int:
     tot_checkout = []
 
     return tot_checkout
+
 
 
