@@ -33,6 +33,7 @@ class TestHello():
         assert checkout_solution.checkout('FFF') == 20
         assert checkout_solution.checkout('FFFFF') == 40
         assert checkout_solution.checkout('FFFFFF') == 40
+        assert checkout_solution.checkout('PPPPQRUVPQRUVPQRUVSU') == 740
 
         # CHK R4
         assert checkout_solution.checkout('UUU') == 120
@@ -49,6 +50,7 @@ class TestHello():
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(checkout_solution.checkout('BBCD'), int)
+
 
 
 
