@@ -27,5 +27,3 @@ def compute(x: int, y: int) -> int:
     _checks(x, y)
     
     return x + y
-
-
