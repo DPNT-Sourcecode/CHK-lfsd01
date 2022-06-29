@@ -1,15 +1,15 @@
 
 
-PRICES = {
-    'A': 50,
-    'B': 30,
-    'C': 20,
-    'D': 15,
-    'E': 40
-}
+# PRICES = {
+#     'A': 50,
+#     'B': 30,
+#     'C': 20,
+#     'D': 15,
+#     'E': 40
+# }
 
 OFFERS = {
-    'A': [{'qty': 3, 'price': 130}, {'qty': 3, 'price': 130}],
+    'A': [{'qty': 5, 'price': 200}, {'qty': 3, 'price': 130}, {'qty': 1, 'price': 50}],
     'B': [{'qty': 2, 'price': 45}],
     'C': [{'qty': 1, 'price': 20}],
     'D': [{'qty': 1, 'price': 15}],
@@ -21,7 +21,7 @@ REPLACEMENT_OFFERS = {
 }
 
 
-def compute_price(count: int, full_price: int, offers: dict) -> int:
+def compute_price(count: int, offers: dict) -> int:
     """Compute the price of all the items of a given
 
     Args:
@@ -35,17 +35,14 @@ def compute_price(count: int, full_price: int, offers: dict) -> int:
 
     if offers:
         tot_price = 0
-        while count > 0:
-            for offer in offers:
-                offer_qty = offer['qty']
-                offer_price = offer['price']
-                Noffers = count // offer_qty
-                tot_price, count = tot_price + Noffers * offer_price, - Noffers * offer_qty
+        for offer in offers:
+            # offers need to be sorted by increasing effective price
+            offer_qty = offer['qty']
+            offer_price = offer['price']
+            Noffers = count // offer_qty
+            tot_price, count = tot_price + Noffers * offer_price, - Noffers * offer_qty
 
-        tot_price = full_price * (count % offer_qty) + offer_price * (count // offer_qty)
-
-    else:
-        tot_price = full_price * count
+        # tot_price = full_price * (count % offer_qty) + offer_price * (count // offer_qty)
 
     return tot_price
 
@@ -74,15 +71,15 @@ def checkout(skus: str) -> int:
         counts[offer['replace_with']] += Noffers * offer['replace_qty']
 
     # check that all skus exist
-    if set(skus) - set(PRICES):
+    if set(skus) - set(OFFERS):
         # some skus do not exist
         return -1
 
     tot_checkout = sum([compute_price(
         count,
-        PRICES.get(sku_name, 0),
         OFFERS.get(sku_name, None)
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
