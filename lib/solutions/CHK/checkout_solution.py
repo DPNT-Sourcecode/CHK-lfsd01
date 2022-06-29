@@ -65,12 +65,16 @@ def checkout(skus: str) -> int:
         # some skus do not exist
         return -1
 
+    # drop zero counts
+    counts = {k: v for k, v in counts.items() if v}
+
     tot_checkout = sum([compute_price(
         count,
         OFFERS.get(sku_name, None)
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
 
