@@ -1,57 +1,24 @@
 
 import pytest
-from solutions.HLO import hello
+from solutions.HLO import hello_solution
 
 
 class TestHello():
     def test_sum(self):
-        assert sum_solution.compute(1,  2) == 3
+        assert hello_solution.hello('iwoka') == 'Hello, iwoka!'
 
     def test_hello_input(self):
         """Check that the input fulfils requirements"""
         with pytest.raises(TypeError) as exc:
-            hello_solution.compute('a', 1)
-        
-        assert f"x must be integer, got {type('a')}" == str(exc.value)
+            hello_solution.hello(20)
 
-        with pytest.raises(TypeError) as exc:   
-            hello_solution.compute(2, 'a')
-        
-        assert f"y must be integer, got {type('a')}" == str(exc.value)
+        assert f"friend_name must be a string, got {type(20)}" == str(exc.value)
 
         with pytest.raises(TypeError) as exc:
-            sum_solution.compute('a', 'b')
+            hello_solution.hello(10.)
 
-        assert f"x must be integer, got {type('a')}" == str(exc.value)
+        assert f"friend_name must be a string, got {type(10.)}" == str(exc.value)
 
-        with pytest.raises(TypeError) as exc:
-            sum_solution.compute(3.2, 2)
-
-        assert f"x must be integer, got {type(3.2)}" == str(exc.value)
-
-        with pytest.raises(ValueError) as exc:
-            sum_solution.compute(101, 3)
-
-        assert f"x must be between 0 and 100 (bounds included), got 101" == str(exc.value)
-
-        with pytest.raises(ValueError) as exc:
-            sum_solution.compute(3, 101)
-
-        assert f"y must be between 0 and 100 (bounds included), got 101" == str(exc.value)
-
-        with pytest.raises(ValueError) as exc:
-            sum_solution.compute(-1, 3)
-
-        assert f"x must be between 0 and 100 (bounds included), got -1" == str(exc.value)
-
-        with pytest.raises(ValueError) as exc:
-            sum_solution.compute(3, -1)
-
-        assert f"y must be between 0 and 100 (bounds included), got -1" == str(exc.value)
-
-
-    def test_sum_output_type(self):
+    def test_hello_output_type(self):
         """Check that the function returns an int."""
-        assert isinstance(sum_solution.compute(2, 1), int)
-        
-        
+        assert isinstance(hello_solution.hello('Marco'), str)
