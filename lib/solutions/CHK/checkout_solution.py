@@ -96,7 +96,6 @@ def checkout(skus: str) -> int:
         # some skus do not exist
         return -1
 
-
     # drop zero counts
     counts = {k: v for k, v in counts.items() if v > 0}
 
@@ -128,6 +127,7 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return multi_buy_checkout + tot_checkout
+
 
 
 
