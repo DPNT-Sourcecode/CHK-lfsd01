@@ -38,6 +38,10 @@ REPLACEMENT_OFFERS = {
     'U': {'qty': 4, 'replace_with': 'U', 'replace_qty': 1},
 }
 
+MULTI_BUY_OFFERS = [
+    {'skus': ['S', 'T', 'X', 'Y', 'Z'], 'qty': 3, 'price': 45}
+]
+
 
 def compute_price(count: int, offers: dict) -> int:
     """Compute the price of all the items of a given
@@ -101,4 +105,5 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
