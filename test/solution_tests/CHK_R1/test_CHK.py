@@ -34,17 +34,21 @@ class TestHello():
         assert checkout_solution.checkout('FFFFF') == 40
         assert checkout_solution.checkout('FFFFFF') == 40
 
+        # CHK R4
+        assert checkout_solution.checkout('UUU') == 120
+
     def test_hello_input(self):
         """Check that the input fulfils requirements"""
         assert checkout_solution.checkout(10) == -1
         assert checkout_solution.checkout(20.) == -1
-        assert checkout_solution.checkout('AAAAX') == -1
-        assert checkout_solution.checkout('ABOAAX') == -1
+        # assert checkout_solution.checkout('AAAAX') == -1
+        # assert checkout_solution.checkout('ABOAAX') == -1
         assert checkout_solution.checkout(10) == -1
         assert checkout_solution.checkout(10) == -1
 
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(checkout_solution.checkout('BBCD'), int)
+
 
 
