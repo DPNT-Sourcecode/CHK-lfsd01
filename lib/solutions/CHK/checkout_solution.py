@@ -40,10 +40,15 @@ def checkout(skus: str) -> int:
     """
     if not isinstance(skus, str):
         return -1
-        
+
     items_in_skus = set(skus)
 
     counts = {item: skus.count(item) for item in items_in_skus}
+
+    # check that all skus exist
+    if items_in_skus - set(PRICES):
+        # some skus do not exist
+        return -1
 
     tot_checkout = sum([compute_price(
         count,
@@ -52,3 +57,4 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
