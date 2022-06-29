@@ -19,6 +19,7 @@ def hello(friend_name: str) -> str:
             f"friend_name must be a string, got {type(friend_name)}"
         )
 
-    return f"Hello, World!"
+    return f"Hello, {friend_name}!"
+
 
 
