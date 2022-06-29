@@ -40,6 +40,3 @@ class TestHello():
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(checkout_solution.checkout('BBCD'), int)
-
-
-
