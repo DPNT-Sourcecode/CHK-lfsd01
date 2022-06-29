@@ -1,13 +1,5 @@
 
-
-# PRICES = {
-#     'A': 50,
-#     'B': 30,
-#     'C': 20,
-#     'D': 15,
-#     'E': 40
-# }
-
+# Note: offers should be sorted by increasing unit price (price/qty value)
 OFFERS = {
     'A': [{'qty': 5, 'price': 200}, {'qty': 3, 'price': 130}, {'qty': 1, 'price': 50}],
     'B': [{'qty': 2, 'price': 45}, {'qty': 1, 'price': 30}],
@@ -32,19 +24,15 @@ def compute_price(count: int, offers: dict) -> int:
     Returns:
         int: total price
     """
-    # print(count)
     if offers:
         tot_price = 0
         for offer in offers:
-            # offers need to be sorted by increasing effective price
+            # offers need to be sorted by increasing unit price
             offer_qty = offer['qty']
             offer_price = offer['price']
             Noffers = count // offer_qty
-            # print(offer, Noffers, count, offer_qty, count//offer_qty, - Noffers * offer_qty)
             tot_price += Noffers * offer_price
             count -= Noffers * offer_qty
-
-        # tot_price = full_price * (count % offer_qty) + offer_price * (count // offer_qty)
 
     return tot_price
 
@@ -83,6 +71,7 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
 
