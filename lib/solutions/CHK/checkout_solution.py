@@ -74,7 +74,9 @@ def checkout(skus: str) -> int:
         OFFERS.get(sku_name, None)
     ) for sku_name, count in counts.items()])
 
+    print("-->>", tot_checkout)
     return tot_checkout
+
 
 
 
