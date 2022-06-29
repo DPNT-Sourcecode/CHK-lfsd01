@@ -89,8 +89,6 @@ def checkout(skus: str) -> int:
         Noffers = counts[sku] // offer['qty']
         counts[offer['replace_with']] -= Noffers * offer['replace_qty']
 
-    # print(counts)
-
     # check that all skus exist
     if set(skus) - set(OFFERS):
         # some skus do not exist
@@ -104,10 +102,10 @@ def checkout(skus: str) -> int:
     for mb_offer in MULTI_BUY_OFFERS:
         # sort skus by decreasing price so it's more convenient for the customer
         sorted_mb_skus = sorted(
-            mb_offer['skus'], 
+            mb_offer['skus'],
             key=lambda sku: OFFERS[sku][-1]['price'],
             reverse=True
-            )
+        )
 
         # linearize the multi-buy skus in a string format
         mb_skus_to_skus = "".join([mb_sku * counts[mb_sku] for mb_sku in sorted_mb_skus if mb_sku in counts])
@@ -127,6 +125,7 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return multi_buy_checkout + tot_checkout
+
 
 
 
