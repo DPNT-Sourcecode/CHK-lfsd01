@@ -1,21 +1,21 @@
 
 import pytest
-from solutions.SUM import sum_solution
+from solutions.HLO import hello
 
 
-class TestSum():
+class TestHello():
     def test_sum(self):
         assert sum_solution.compute(1,  2) == 3
 
-    def test_sum_input(self):
+    def test_hello_input(self):
         """Check that the input fulfils requirements"""
         with pytest.raises(TypeError) as exc:
-            sum_solution.compute('a', 1)
+            hello_solution.compute('a', 1)
         
         assert f"x must be integer, got {type('a')}" == str(exc.value)
 
         with pytest.raises(TypeError) as exc:   
-            sum_solution.compute(2, 'a')
+            hello_solution.compute(2, 'a')
         
         assert f"y must be integer, got {type('a')}" == str(exc.value)
 
