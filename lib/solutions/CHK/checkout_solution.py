@@ -11,7 +11,7 @@ OFFERS = {
     'H': [{'qty': 10, 'price': 80}, {'qty': 5, 'price': 45}, {'qty': 1, 'price': 10}],
     'I': [{'qty': 1, 'price': 35}],
     'J': [{'qty': 1, 'price': 60}],
-    'K': [{'qty': 2, 'price': 150}, {'qty': 1, 'price': 80}],
+    'K': [{'qty': 2, 'price': 120}, {'qty': 1, 'price': 70}],
     'L': [{'qty': 1, 'price': 90}],
     'M': [{'qty': 1, 'price': 15}],
     'N': [{'qty': 1, 'price': 40}],
@@ -19,14 +19,14 @@ OFFERS = {
     'P': [{'qty': 5, 'price': 200}, {'qty': 1, 'price': 50}],
     'Q': [{'qty': 3, 'price': 80}, {'qty': 1, 'price': 30}],
     'R': [{'qty': 1, 'price': 50}],
-    'S': [{'qty': 1, 'price': 30}],
+    'S': [{'qty': 1, 'price': 20}],
     'T': [{'qty': 1, 'price': 20}],
     'U': [{'qty': 1, 'price': 40}],
     'V': [{'qty': 3, 'price': 130}, {'qty': 2, 'price': 90}, {'qty': 1, 'price': 50}],
     'W': [{'qty': 1, 'price': 20}],
-    'X': [{'qty': 1, 'price': 90}],
-    'Y': [{'qty': 1, 'price': 10}],
-    'Z': [{'qty': 1, 'price': 50}],
+    'X': [{'qty': 1, 'price': 17}],
+    'Y': [{'qty': 1, 'price': 20}],
+    'Z': [{'qty': 1, 'price': 21}],
 }
 
 
@@ -101,3 +101,4 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
