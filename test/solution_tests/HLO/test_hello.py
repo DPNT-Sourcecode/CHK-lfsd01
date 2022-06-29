@@ -24,6 +24,3 @@ class TestHello():
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(hello_solution.hello('Marco'), str)
-
-
-
