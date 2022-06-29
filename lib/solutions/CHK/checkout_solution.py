@@ -35,7 +35,7 @@ REPLACEMENT_OFFERS = {
     'F': {'qty': 3, 'replace_with': 'F', 'replace_qty': 1},
     'N': {'qty': 3, 'replace_with': 'M', 'replace_qty': 1},
     'R': {'qty': 3, 'replace_with': 'Q', 'replace_qty': 1},
-    'U': {'qty': 3, 'replace_with': 'U', 'replace_qty': 1},
+    'U': {'qty': 4, 'replace_with': 'U', 'replace_qty': 1},
 }
 
 
@@ -101,5 +101,3 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
-
-
