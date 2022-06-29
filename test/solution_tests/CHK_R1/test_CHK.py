@@ -28,15 +28,21 @@ class TestHello():
         assert checkout_solution.checkout('BBBCDEEE') == 75 + 20 + 15 + 120 - 30
         assert checkout_solution.checkout('BBBCDEEEE') == 30 + 20 + 15 + 160
 
+        # CHK R3
+        assert checkout_solution.checkout('FF') == 20
+        assert checkout_solution.checkout('FFF') == 20
+        assert checkout_solution.checkout('FF') == 20
+
     def test_hello_input(self):
         """Check that the input fulfils requirements"""
         assert checkout_solution.checkout(10) == -1
         assert checkout_solution.checkout(20.) == -1
-        assert checkout_solution.checkout('AAAAF') == -1
-        assert checkout_solution.checkout('ABOAAF') == -1
+        assert checkout_solution.checkout('AAAAX') == -1
+        assert checkout_solution.checkout('ABOAAX') == -1
         assert checkout_solution.checkout(10) == -1
         assert checkout_solution.checkout(10) == -1
 
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(checkout_solution.checkout('BBCD'), int)
+

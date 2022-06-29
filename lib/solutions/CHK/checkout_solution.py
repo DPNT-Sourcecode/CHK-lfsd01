@@ -5,11 +5,13 @@ OFFERS = {
     'B': [{'qty': 2, 'price': 45}, {'qty': 1, 'price': 30}],
     'C': [{'qty': 1, 'price': 20}],
     'D': [{'qty': 1, 'price': 15}],
-    'E': [{'qty': 1, 'price': 40}]
+    'E': [{'qty': 1, 'price': 40}],
+    'F': [{'qty': 1, 'price': 10}]
 }
 
 REPLACEMENT_OFFERS = {
-    'E': {'qty': 2, 'replace_with': 'B', 'replace_qty': 1}
+    'E': {'qty': 2, 'replace_with': 'B', 'replace_qty': 1},
+    'F': {'qty': 3, 'replace_with': 'F', 'replace_qty': 1}
 }
 
 
@@ -75,3 +77,4 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
