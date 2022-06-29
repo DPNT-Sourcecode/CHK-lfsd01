@@ -27,10 +27,20 @@ def compute_price(count, full_price, offer):
 
 
 def checkout(skus: str) -> int:
+    """Compute the total checkout, accounting for any offers.
+
+    Args:
+        skus (str): list of skus in a single-string format.
+
+    Raises:
+        TypeError: if skus is not a string.
+
+    Returns:
+        int: the total checkout price.
+    """
     if not isinstance(skus, str):
-        raise TypeError(
-            f"skus must be a string, got {type(skus)}"
-        )
+        return -1
+        
     items_in_skus = set(skus)
 
     counts = {item: skus.count(item) for item in items_in_skus}
@@ -42,10 +52,3 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
-
-
-
-
-
-
-
