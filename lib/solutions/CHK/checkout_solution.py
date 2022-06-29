@@ -13,20 +13,22 @@ OFFERS = {
 }
 
 
-def compute_price(count: int, full_price: int, offer: dict) -> int:
+def compute_price(count: int, full_price: int, offers: dict) -> int:
     """Compute the price of all the items of a given
 
     Args:
         count (int): number of items
         full_price (int): full price
-        offer (dict): offer definition (qty, price)
+        offers (dict): offers definition (qty, price)
 
     Returns:
         int: total price
     """
 
-    if offer:
-        offer_qty = offer['qty']
+    if offers:
+        for offer in offers:
+            offer_qty = offer['qty']
+            
         offer_price = offer['price']
         tot_price = full_price * (count % offer_qty) + offer_price * (count // offer_qty)
 
@@ -67,5 +69,6 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
