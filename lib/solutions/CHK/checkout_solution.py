@@ -8,10 +8,16 @@ PRICES = {
 }
 
 OFFERS = {
-    'A': {'qty': 3, 'price': 130},
-    'B': {'qty': 2, 'price': 45},
+    'A': [{'qty': 3, 'price': 130}, {'qty': 3, 'price': 130}], 
+    'B': [{'qty': 2, 'price': 45}],
+    'C': [{'qty': 1, 'price': 20}],
+    'D': [{'qty': 1, 'price': 15}],
+    'E': [{'qty': 1, 'price': 40}]
 }
 
+REPLACEMENT_OFFERS = {
+    'E': {'qty': 2, 'replace_with': 'B'}
+}
 
 def compute_price(count: int, full_price: int, offers: dict) -> int:
     """Compute the price of all the items of a given
@@ -74,6 +80,7 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
 
