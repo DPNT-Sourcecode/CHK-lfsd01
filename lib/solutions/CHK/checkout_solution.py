@@ -89,7 +89,7 @@ def checkout(skus: str) -> int:
         Noffers = counts[sku] // offer['qty']
         counts[offer['replace_with']] -= Noffers * offer['replace_qty']
 
-    print(counts)
+    # print(counts)
 
     # check that all skus exist
     if set(skus) - set(OFFERS):
@@ -99,11 +99,23 @@ def checkout(skus: str) -> int:
     # drop zero counts
     counts = {k: v for k, v in counts.items() if v > 0}
 
+    # apply multi-buy offers
+
+    for mb_offer in MULTI_BUY_OFFERS:
+        # sort skus by decreasing price
+        sorted_mb_skus = sorted(
+            mb_offer['skus'], 
+            key=lambda sku: OFFERS[sku][-1]['price'],
+            reverse=True
+            )
+        print(sorted_mb_skus)
+    return 0
     tot_checkout = sum([compute_price(
         count,
         OFFERS.get(sku_name, None)
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
