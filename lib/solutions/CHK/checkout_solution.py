@@ -4,7 +4,8 @@ PRICES = {
     'A': 50,
     'B': 30,
     'C': 20,
-    'D': 15
+    'D': 15,
+    'E': 40
 }
 
 OFFERS = {
@@ -64,9 +65,7 @@ def checkout(skus: str) -> int:
     if not isinstance(skus, str):
         return -1
 
-    items_in_skus = set(skus)
-
-    counts = {item: skus.count(item) for item in items_in_skus}
+    counts = {item: skus.count(item) for item in OFFERS}
 
     # apply replacement offers
     for sku, offer in REPLACEMENT_OFFERS.items():
@@ -75,7 +74,7 @@ def checkout(skus: str) -> int:
         counts[offer['replace_with']] += Noffers * offer['replace_qty']
 
     # check that all skus exist
-    if items_in_skus - set(PRICES):
+    if set(skus) - set(PRICES):
         # some skus do not exist
         return -1
 
@@ -86,3 +85,4 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
