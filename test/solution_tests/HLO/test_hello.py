@@ -7,7 +7,7 @@ class TestHello():
     """pytest class for testing the Hello solution"""
 
     def test_sum(self):
-        assert hello_solution.hello('iwoka') == 'Hello, iwoka!'
+        assert hello_solution.hello('iwoka') == 'Hello, World!'
 
     def test_hello_input(self):
         """Check that the input fulfils requirements"""
@@ -24,4 +24,5 @@ class TestHello():
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(hello_solution.hello('Marco'), str)
+
 
