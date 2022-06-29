@@ -1,20 +1,24 @@
 
 
-SKUS_PRICES = {
+PRICES = {
     'A': 50,
     'B': 30,
     'C': 20,
     'D': 15
 }
 
-SKUS_OFFERS = {
-    'A': {'qty': 3, 'price': 130},
-    'B': {'qty': 2, 'price': 45},
+OFFERS_QTY = {
+    'A': 3,
+    'B': 2,
+}
+
+OFFERS_PRICES = {
+    'A': 130,
+    'B': 45,
 }
 
 
 def compute_price(sku_name, count, full_price, offer_qty, offer_price):
-
 
     # full_price = SKUS_PRICES[sku_name]
     # offer_qty = SKUS_PRICES[sku_name]['qty']
@@ -31,9 +35,14 @@ def checkout(skus: str) -> int:
 
     counts = {item: skus.count(item) for item in items_in_skus}
 
-    tot_checkout = [compute_price(sku_name, count) for sku_name, count in counts.items()]
+    tot_checkout = [compute_price(
+        sku_name,
+        count,
+        PRICES.get(sku_name, 0),
+        OFFERS.get(sku_name, 0)) for sku_name, count in counts.items()]
 
     return tot_checkout
+
 
 
 
