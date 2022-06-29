@@ -102,20 +102,25 @@ def checkout(skus: str) -> int:
     # apply multi-buy offers
 
     for mb_offer in MULTI_BUY_OFFERS:
-        # sort skus by decreasing price
+        # sort skus by decreasing price so it's more convenient for the customer
         sorted_mb_skus = sorted(
             mb_offer['skus'], 
             key=lambda sku: OFFERS[sku][-1]['price'],
             reverse=True
             )
+
+        Nmulti_buy_items = sum(map(lambda sku: counts[sku], sorted_mb_skus))
+        
         print(sorted_mb_skus)
-    return 0
+
+
     tot_checkout = sum([compute_price(
         count,
         OFFERS.get(sku_name, None)
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
 
