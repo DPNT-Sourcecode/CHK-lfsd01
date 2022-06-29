@@ -17,16 +17,14 @@ class TestHello():
 
     def test_hello_input(self):
         """Check that the input fulfils requirements"""
-        with pytest.raises(TypeError) as exc:
-            checkout_solution.checkout(20)
-
-        assert f"skus must be a string, got {type(20)}" == str(exc.value)
-
-        with pytest.raises(TypeError) as exc:
-            checkout_solution.checkout(10.)
-
-        assert f"skus must be a string, got {type(10.)}" == str(exc.value)
+        assert checkout_solution.checkout(10) == -1
+        assert checkout_solution.checkout(20.) == -1
+        assert checkout_solution.checkout('AAAAF') == -1
+        assert checkout_solution.checkout('ABOAAF') == -1
+        assert checkout_solution.checkout(10) == -1
+        assert checkout_solution.checkout(10) == -1
 
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(checkout_solution.checkout('BBCD'), int)
+
