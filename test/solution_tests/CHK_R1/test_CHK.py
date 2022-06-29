@@ -15,6 +15,12 @@ class TestHello():
         assert checkout_solution.checkout('BBB') == 75
         assert checkout_solution.checkout('BBCD') == 80
 
+        # CHK R2
+        assert checkout_solution.checkout('BBCDE') == 80
+        assert checkout_solution.checkout('BBCD') == 80
+        assert checkout_solution.checkout('BBCD') == 80
+        assert checkout_solution.checkout('BBCD') == 80
+
     def test_hello_input(self):
         """Check that the input fulfils requirements"""
         assert checkout_solution.checkout(10) == -1
@@ -27,3 +33,4 @@ class TestHello():
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(checkout_solution.checkout('BBCD'), int)
+
