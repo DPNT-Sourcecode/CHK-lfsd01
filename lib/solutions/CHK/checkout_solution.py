@@ -76,12 +76,3 @@ def checkout(skus: str) -> int:
 
     print("-->>", tot_checkout)
     return tot_checkout
-
-
-
-
-
-
-
-
-
