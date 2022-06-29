@@ -96,8 +96,6 @@ def checkout(skus: str) -> int:
         # some skus do not exist
         return -1
 
-    # drop zero counts
-    counts = {k: v for k, v in counts.items() if v > 0}
 
     # apply multi-buy offers
 
@@ -109,10 +107,14 @@ def checkout(skus: str) -> int:
             reverse=True
             )
 
-        Nmulti_buy_items = sum(map(lambda sku: counts[sku], sorted_mb_skus))
-        
-        print(sorted_mb_skus)
+        multi_buy_items = {mb_sku: counts[mb_sku] for mb_sku in sorted_mb_skus}
+        Nmulti_buy_items = sum(multi_buy_items.values())
+        print(multi_buy_items)
+        print(Nmulti_buy_items)
 
+    return 0
+    # drop zero counts
+    counts = {k: v for k, v in counts.items() if v > 0}
 
     tot_checkout = sum([compute_price(
         count,
@@ -120,7 +122,3 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
-
-
-
-
