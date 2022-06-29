@@ -31,7 +31,8 @@ class TestHello():
         # CHK R3
         assert checkout_solution.checkout('FF') == 20
         assert checkout_solution.checkout('FFF') == 20
-        assert checkout_solution.checkout('FF') == 20
+        assert checkout_solution.checkout('FFFFF') == 40
+        assert checkout_solution.checkout('FFFFFF') == 40
 
     def test_hello_input(self):
         """Check that the input fulfils requirements"""
@@ -45,4 +46,5 @@ class TestHello():
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(checkout_solution.checkout('BBCD'), int)
+
 
