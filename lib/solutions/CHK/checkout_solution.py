@@ -32,7 +32,7 @@ def compute_price(count: int, offers: dict) -> int:
     Returns:
         int: total price
     """
-
+    print(count)
     if offers:
         tot_price = 0
         for offer in offers:
@@ -40,8 +40,8 @@ def compute_price(count: int, offers: dict) -> int:
             offer_qty = offer['qty']
             offer_price = offer['price']
             Noffers = count // offer_qty
-            print(offer, Noffers, offer_qty, count//offer_qty)
-            tot_price, count = tot_price + Noffers * offer_price, - Noffers * offer_qty
+            print(offer, Noffers, count, offer_qty, count//offer_qty, - Noffers * offer_qty)
+            # tot_price, count = tot_price + Noffers * offer_price, - Noffers * offer_qty
 
         # tot_price = full_price * (count % offer_qty) + offer_price * (count // offer_qty)
 
@@ -65,7 +65,7 @@ def checkout(skus: str) -> int:
 
     counts = {item: skus.count(item) for item in OFFERS}
     print(counts)
-    
+
     # apply replacement offers
     for sku, offer in REPLACEMENT_OFFERS.items():
         Noffers = counts[sku] // offer['qty']
@@ -84,6 +84,7 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
 
