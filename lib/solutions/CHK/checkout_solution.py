@@ -100,6 +100,7 @@ def checkout(skus: str) -> int:
     # drop zero counts
     counts = {k: v for k, v in counts.items() if v > 0}
 
+    multi_buy_checkout = 0
     # apply multi-buy offers
     for mb_offer in MULTI_BUY_OFFERS:
         # sort skus by decreasing price so it's more convenient for the customer
@@ -109,17 +110,20 @@ def checkout(skus: str) -> int:
             reverse=True
             )
 
-        multi_buy_items = {mb_sku: counts[mb_sku] for mb_sku in sorted_mb_skus if mb_sku in counts}
-        Nmulti_buy_items = sum(multi_buy_items.values())
-        print(multi_buy_items)
-        print(Nmulti_buy_items)
+        mb_skus_to_skus = "".join([mb_sku * counts[mb_sku] for mb_sku in sorted_mb_skus if mb_sku in counts])
+        print(mb_skus_to_skus)
+
+        # multi_buy_items = {mb_sku: counts[mb_sku] for mb_sku in sorted_mb_skus if mb_sku in counts}
+        # Nmulti_buy_items = sum(multi_buy_items.values())
+        # print(multi_buy_items)
+        # print(Nmulti_buy_items)
         
-        multi_buy_to_be_removed = {mb_sku: 0 for mb_sku in multi_buy_items}
-        while Nmulti_buy_items >= 3:
-            for mb_sku in sorted_mb_skus:
-                remove = max(multi_buy_items[mb_sku], 3)
-                Nmulti_buy_items -= remove
-                multi_buy_to_be_removed[mb_sku] += remove
+        # multi_buy_to_be_removed = {mb_sku: 0 for mb_sku in multi_buy_items}
+        # while Nmulti_buy_items >= 3:
+        #     for mb_sku in sorted_mb_skus:
+        #         remove = multi_buy_items[mb_sku]
+        #         Nmulti_buy_items -= remove
+        #         multi_buy_to_be_removed[mb_sku] += remove
 
     return 0
 
@@ -129,5 +133,6 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
