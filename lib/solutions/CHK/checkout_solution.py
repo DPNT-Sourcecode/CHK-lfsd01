@@ -111,7 +111,12 @@ def checkout(skus: str) -> int:
             )
 
         mb_skus_to_skus = "".join([mb_sku * counts[mb_sku] for mb_sku in sorted_mb_skus if mb_sku in counts])
-        print(mb_skus_to_skus)
+        Nmulti_buy_items = len(mb_skus_to_skus)
+
+        Noffers = Nmulti_buy_items // mb_offer['qty']
+        multi_buy_checkout = Noffers * mb_offer['price']
+        multi_buy_to_be_removed = mb_skus_to_skus[:Noffers * mb_offer['qty']]
+        print(mb_skus_to_skus, Nmulti_buy_items, Noffers, multi_buy_checkout, multi_buy_to_be_removed)
 
         # multi_buy_items = {mb_sku: counts[mb_sku] for mb_sku in sorted_mb_skus if mb_sku in counts}
         # Nmulti_buy_items = sum(multi_buy_items.values())
@@ -133,6 +138,7 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
 
