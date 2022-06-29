@@ -125,10 +125,3 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return multi_buy_checkout + tot_checkout
-
-
-
-
-
-
-
