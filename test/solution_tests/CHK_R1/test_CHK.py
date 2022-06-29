@@ -19,14 +19,14 @@ class TestHello():
         # assert checkout_solution.checkout('AAA') == 130
         # assert checkout_solution.checkout('AAAAAAAAAAAAA') == 400 + 130
         # assert checkout_solution.checkout('AAAAAAAAAAAA') == 400 + 100
-        assert checkout_solution.checkout('EE') == 30
+        assert checkout_solution.checkout('EE') == 80
         assert checkout_solution.checkout('EEB') == 80
         assert checkout_solution.checkout('EEEB') == 120
 
         # assert checkout_solution.checkout('BBCDE') == 120
-        # assert checkout_solution.checkout('BBCDEEE') == 80 + 40 + 30
+        # assert checkout_solution.checkout('BBCDEEE') == 
         # assert checkout_solution.checkout('BBBBCDE') == 90 + 20 + 15 + 40
-        # assert checkout_solution.checkout('BBBCDEEE') == checkout_solution.checkout('BBBBCDE')
+        assert checkout_solution.checkout('BBBCDEEE') == checkout_solution.checkout('BBCDEEE')
 
     def test_hello_input(self):
         """Check that the input fulfils requirements"""
@@ -40,3 +40,4 @@ class TestHello():
     def test_hello_output_type(self):
         """Check that the function returns an int."""
         assert isinstance(checkout_solution.checkout('BBCD'), int)
+

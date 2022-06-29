@@ -57,8 +57,9 @@ def checkout(skus: str) -> int:
     # apply replacement offers
     for sku, offer in REPLACEMENT_OFFERS.items():
         Noffers = counts[sku] // offer['qty']
-        counts[sku] -= Noffers * offer['qty']
-        counts[offer['replace_with']] += Noffers * offer['replace_qty']
+        # counts[sku] -= Noffers * offer['qty']
+        counts[offer['replace_with']] -= Noffers * offer['replace_qty']
+
     print(counts)
 
     # check that all skus exist
@@ -67,7 +68,7 @@ def checkout(skus: str) -> int:
         return -1
 
     # drop zero counts
-    counts = {k: v for k, v in counts.items() if v}
+    counts = {k: v for k, v in counts.items() if v > 0}
 
     tot_checkout = sum([compute_price(
         count,
@@ -76,3 +77,4 @@ def checkout(skus: str) -> int:
 
     print("-->>", tot_checkout)
     return tot_checkout
+
