@@ -53,12 +53,13 @@ def checkout(skus: str) -> int:
         return -1
 
     counts = {item: skus.count(item) for item in OFFERS}
-
+    print(counts)
     # apply replacement offers
     for sku, offer in REPLACEMENT_OFFERS.items():
         Noffers = counts[sku] // offer['qty']
         counts[sku] -= Noffers * offer['qty']
         counts[offer['replace_with']] += Noffers * offer['replace_qty']
+    print(counts)
 
     # check that all skus exist
     if set(skus) - set(OFFERS):
@@ -74,6 +75,7 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
 
