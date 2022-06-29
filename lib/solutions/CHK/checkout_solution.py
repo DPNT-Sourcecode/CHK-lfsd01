@@ -26,10 +26,15 @@ def compute_price(count: int, full_price: int, offers: dict) -> int:
     """
 
     if offers:
-        for offer in offers:
-            offer_qty = offer['qty']
-            
-        offer_price = offer['price']
+
+            tot_price = 0
+            while count > 0:
+                for offer in offers:
+                    offer_qty = offer['qty']
+                    offer_price = offer['price']
+                    Noffers = count // offer_qty
+                    tot_price, count = tot_price + Noffers * offer_price, - Noffers * offer_qty
+
         tot_price = full_price * (count % offer_qty) + offer_price * (count // offer_qty)
 
     else:
@@ -69,6 +74,7 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
 
 
