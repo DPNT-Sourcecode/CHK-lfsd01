@@ -113,9 +113,13 @@ def checkout(skus: str) -> int:
         Nmulti_buy_items = sum(multi_buy_items.values())
         print(multi_buy_items)
         print(Nmulti_buy_items)
-
-        # if Nmulti_buy_items >= 3:
-        #     for mb_sku in sorted_mb_skus
+        
+        multi_buy_to_be_removed = {mb_sku: 0 for mb_sku in multi_buy_items}
+        while Nmulti_buy_items >= 3:
+            for mb_sku in sorted_mb_skus:
+                remove = max(multi_buy_items[mb_sku], 3)
+                Nmulti_buy_items -= remove
+                multi_buy_to_be_removed[mb_sku] += remove
 
     return 0
 
@@ -125,4 +129,5 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
+
 
