@@ -8,7 +8,7 @@ PRICES = {
 }
 
 OFFERS = {
-    'A': [{'qty': 3, 'price': 130}, {'qty': 3, 'price': 130}], 
+    'A': [{'qty': 3, 'price': 130}, {'qty': 3, 'price': 130}],
     'B': [{'qty': 2, 'price': 45}],
     'C': [{'qty': 1, 'price': 20}],
     'D': [{'qty': 1, 'price': 15}],
@@ -16,8 +16,9 @@ OFFERS = {
 }
 
 REPLACEMENT_OFFERS = {
-    'E': {'qty': 2, 'replace_with': 'B'}
+    'E': {'qty': 2, 'replace_with': 'B', 'replace_qty': 1}
 }
+
 
 def compute_price(count: int, full_price: int, offers: dict) -> int:
     """Compute the price of all the items of a given
@@ -32,14 +33,13 @@ def compute_price(count: int, full_price: int, offers: dict) -> int:
     """
 
     if offers:
-
-            tot_price = 0
-            while count > 0:
-                for offer in offers:
-                    offer_qty = offer['qty']
-                    offer_price = offer['price']
-                    Noffers = count // offer_qty
-                    tot_price, count = tot_price + Noffers * offer_price, - Noffers * offer_qty
+        tot_price = 0
+        while count > 0:
+            for offer in offers:
+                offer_qty = offer['qty']
+                offer_price = offer['price']
+                Noffers = count // offer_qty
+                tot_price, count = tot_price + Noffers * offer_price, - Noffers * offer_qty
 
         tot_price = full_price * (count % offer_qty) + offer_price * (count // offer_qty)
 
@@ -68,6 +68,12 @@ def checkout(skus: str) -> int:
 
     counts = {item: skus.count(item) for item in items_in_skus}
 
+    # apply replacement offers
+    for sku, offer in REPLACEMENT_OFFERS.items():
+        Noffers = counts[sku] // offer['qty']
+        counts[sku] -= Noffers * offer['qty']
+        counts[offer['replace_with']] += Noffers * offer['replace_qty']
+
     # check that all skus exist
     if items_in_skus - set(PRICES):
         # some skus do not exist
@@ -80,8 +86,3 @@ def checkout(skus: str) -> int:
     ) for sku_name, count in counts.items()])
 
     return tot_checkout
-
-
-
-
-
